@@ -111,90 +111,53 @@
       display:flex;
       align-items:center;
       gap:14px;
-    }
-
-    .logo-666{
+      cursor:pointer;
       position:relative;
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 35%),
-        linear-gradient(135deg, rgba(193,18,31,0.28), rgba(139,92,246,0.28));
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.03) inset,
-        0 0 18px rgba(193,18,31,0.18),
-        0 0 24px rgba(139,92,246,0.16);
-      overflow:hidden;
-      animation:logoPulse 3.2s ease-in-out infinite;
+      user-select:none;
     }
 
-    .logo-666::before{
+    .logo-wrap::after{
       content:"";
       position:absolute;
-      inset:-30%;
-      background:conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        rgba(139,92,246,0.28) 70deg,
-        transparent 140deg,
-        rgba(193,18,31,0.22) 210deg,
-        transparent 300deg,
-        rgba(125,211,252,0.20) 360deg
-      );
-      animation:spinSlow 8s linear infinite;
-      filter:blur(8px);
+      width:100px;
+      height:100px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(193,18,31,0.20) 0%, rgba(193,18,31,0.06) 35%, transparent 70%);
+      filter:blur(10px);
+      opacity:.55;
+      transform:translateX(-9px);
+      pointer-events:none;
+      animation:auraPulse 2.8s ease-in-out infinite;
     }
 
-    .logo-666 span{
+    .site-logo{
+      width:82px;
+      height:82px;
+      object-fit:contain;
+      display:block;
       position:relative;
       z-index:2;
-      font-size:22px;
-      font-weight:900;
-      letter-spacing:1px;
-      color:#fff;
-      text-shadow:
-        0 0 6px rgba(255,255,255,0.35),
-        0 0 16px rgba(139,92,246,0.45),
-        0 0 24px rgba(193,18,31,0.24);
-      animation:flicker666 2.6s ease-in-out infinite;
+      animation:
+        logoFloat 3.8s ease-in-out infinite,
+        logoGlow 2.8s ease-in-out infinite;
+      filter:
+        drop-shadow(0 0 10px rgba(193,18,31,0.30))
+        drop-shadow(0 0 20px rgba(139,92,246,0.18));
+      transition:
+        transform .25s ease,
+        filter .25s ease;
     }
 
-    @keyframes spinSlow{
-      from{ transform:rotate(0deg); }
-      to{ transform:rotate(360deg); }
-    }
-
-    @keyframes logoPulse{
-      0%,100%{
-        transform:scale(1);
-        box-shadow:
-          0 0 0 1px rgba(255,255,255,0.03) inset,
-          0 0 18px rgba(193,18,31,0.18),
-          0 0 24px rgba(139,92,246,0.16);
-      }
-      50%{
-        transform:scale(1.04);
-        box-shadow:
-          0 0 0 1px rgba(255,255,255,0.03) inset,
-          0 0 26px rgba(193,18,31,0.25),
-          0 0 34px rgba(139,92,246,0.22);
-      }
-    }
-
-    @keyframes flicker666{
-      0%,100%{ opacity:1; }
-      10%{ opacity:.95; }
-      20%{ opacity:1; }
-      30%{ opacity:.88; }
-      40%{ opacity:1; }
-      70%{ opacity:.96; }
-      80%{ opacity:1; }
-      90%{ opacity:.92; }
+    .logo-wrap:hover .site-logo{
+      transform:scale(1.06) rotate(-1deg);
+      filter:
+        drop-shadow(0 0 16px rgba(193,18,31,0.45))
+        drop-shadow(0 0 32px rgba(139,92,246,0.28))
+        drop-shadow(0 0 46px rgba(255,0,0,0.18));
+      animation:
+        logoFloat 3.8s ease-in-out infinite,
+        logoGlow 1.4s ease-in-out infinite,
+        demonFlicker .22s linear 2;
     }
 
     .logo-text{
@@ -203,12 +166,60 @@
       letter-spacing:2px;
       text-transform:uppercase;
       color:#fff;
-      text-shadow:0 0 18px rgba(139,92,246,0.24);
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.08),
+        0 0 18px rgba(139,92,246,0.20);
       line-height:1;
+      transition:.25s ease;
+      position:relative;
+      z-index:2;
     }
 
     .logo-text span{
       color:var(--violet);
+    }
+
+    .logo-wrap:hover .logo-text{
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.16),
+        0 0 18px rgba(193,18,31,0.18),
+        0 0 28px rgba(139,92,246,0.28);
+    }
+
+    @keyframes logoFloat{
+      0%,100%{ transform:translateY(0px); }
+      50%{ transform:translateY(-4px); }
+    }
+
+    @keyframes logoGlow{
+      0%,100%{
+        filter:
+          drop-shadow(0 0 10px rgba(193,18,31,0.30))
+          drop-shadow(0 0 20px rgba(139,92,246,0.18));
+      }
+      50%{
+        filter:
+          drop-shadow(0 0 18px rgba(193,18,31,0.42))
+          drop-shadow(0 0 32px rgba(139,92,246,0.26));
+      }
+    }
+
+    @keyframes auraPulse{
+      0%,100%{
+        opacity:.38;
+        transform:translateX(-9px) scale(0.96);
+      }
+      50%{
+        opacity:.72;
+        transform:translateX(-9px) scale(1.08);
+      }
+    }
+
+    @keyframes demonFlicker{
+      0%,100%{ opacity:1; }
+      25%{ opacity:.92; }
+      50%{ opacity:1; }
+      75%{ opacity:.96; }
     }
 
     .nav-links{
@@ -389,6 +400,7 @@
       transition:.25s ease;
       border:1px solid transparent;
       cursor:pointer;
+      font-family:inherit;
     }
 
     .btn-primary{
@@ -903,6 +915,21 @@
         bottom:10px;
         font-size:13px;
       }
+
+      .site-logo{
+        width:64px;
+        height:64px;
+      }
+
+      .logo-wrap::after{
+        width:78px;
+        height:78px;
+        transform:translateX(-6px);
+      }
+
+      .logo-text{
+        font-size:24px;
+      }
     }
   </style>
 </head>
@@ -927,8 +954,8 @@
 
   <nav class="navbar">
     <div class="nav-inner">
-      <div class="logo-wrap">
-        <div class="logo-666"><span>666</span></div>
+      <div class="logo-wrap" id="logoWrap">
+        <img src="logo-666ers.png" alt="666ers Logo" class="site-logo" id="siteLogo">
         <div class="logo-text">Familie <span>666ers</span></div>
       </div>
 
@@ -1436,6 +1463,107 @@
         closeLightbox();
       }
     });
+
+    const logoWrap = document.getElementById("logoWrap");
+
+    let audioUnlocked = false;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+
+      audioUnlocked = true;
+    }
+
+    function playTone({
+      frequency = 440,
+      duration = 0.08,
+      type = "sawtooth",
+      volume = 0.02,
+      endFrequency = null
+    }) {
+      if (!audioUnlocked || !audioCtx) return;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+
+      if (endFrequency) {
+        osc.frequency.exponentialRampToValueAtTime(
+          endFrequency,
+          audioCtx.currentTime + duration
+        );
+      }
+
+      gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioCtx.currentTime + duration
+      );
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playHoverSound() {
+      playTone({
+        frequency: 240,
+        endFrequency: 320,
+        duration: 0.07,
+        type: "triangle",
+        volume: 0.018
+      });
+    }
+
+    function playClickSound() {
+      playTone({
+        frequency: 180,
+        endFrequency: 90,
+        duration: 0.12,
+        type: "sawtooth",
+        volume: 0.03
+      });
+
+      setTimeout(() => {
+        playTone({
+          frequency: 260,
+          endFrequency: 180,
+          duration: 0.08,
+          type: "triangle",
+          volume: 0.018
+        });
+      }, 35);
+    }
+
+    document.addEventListener("click", initAudio, { once: true });
+    document.addEventListener("keydown", initAudio, { once: true });
+    document.addEventListener("touchstart", initAudio, { once: true });
+
+    if (logoWrap) {
+      let hoverCooldown = false;
+
+      logoWrap.addEventListener("mouseenter", () => {
+        if (hoverCooldown) return;
+        playHoverSound();
+        hoverCooldown = true;
+        setTimeout(() => hoverCooldown = false, 120);
+      });
+
+      logoWrap.addEventListener("click", () => {
+        playClickSound();
+      });
+    }
   </script>
 </body>
 </html>
