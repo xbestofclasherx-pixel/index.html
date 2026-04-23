@@ -116,20 +116,6 @@
       user-select:none;
     }
 
-    .logo-wrap::after{
-      content:"";
-      position:absolute;
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(193,18,31,0.04) 0%, rgba(193,18,31,0.015) 42%, transparent 72%);
-      filter:blur(10px);
-      opacity:.18;
-      transform:translateX(4px);
-      pointer-events:none;
-      animation:auraPulse 4s ease-in-out infinite;
-    }
-
     .site-logo{
       width:82px;
       height:82px;
@@ -137,18 +123,13 @@
       display:block;
       position:relative;
       z-index:2;
-      animation:
-        logoFloat 4.5s ease-in-out infinite,
-        logoGlow 4.2s ease-in-out infinite;
-      filter:drop-shadow(0 0 1px rgba(130,0,0,0.08));
-      transition:
-        transform .25s ease,
-        filter .25s ease;
+      filter:drop-shadow(0 0 1px rgba(110,0,0,0.06));
+      transition:transform .2s ease, filter .2s ease;
     }
 
     .logo-wrap:hover .site-logo{
       transform:scale(1.01);
-      filter:drop-shadow(0 0 3px rgba(140,0,0,0.12));
+      filter:drop-shadow(0 0 2px rgba(110,0,0,0.10));
     }
 
     .logo-text{
@@ -158,8 +139,8 @@
       text-transform:uppercase;
       color:#fff;
       text-shadow:
-        0 0 3px rgba(255,255,255,0.03),
-        0 0 8px rgba(139,92,246,0.06);
+        0 0 2px rgba(255,255,255,0.02),
+        0 0 6px rgba(139,92,246,0.05);
       line-height:1;
       transition:.25s ease;
       position:relative;
@@ -168,31 +149,6 @@
 
     .logo-text span{
       color:var(--violet);
-    }
-
-    @keyframes logoFloat{
-      0%,100%{ transform:translateY(0px); }
-      50%{ transform:translateY(-2px); }
-    }
-
-    @keyframes logoGlow{
-      0%,100%{
-        filter:drop-shadow(0 0 1px rgba(120,0,0,0.06));
-      }
-      50%{
-        filter:drop-shadow(0 0 2px rgba(120,0,0,0.09));
-      }
-    }
-
-    @keyframes auraPulse{
-      0%,100%{
-        opacity:.12;
-        transform:translateX(4px) scale(0.98);
-      }
-      50%{
-        opacity:.18;
-        transform:translateX(4px) scale(1.02);
-      }
     }
 
     .nav-links{
@@ -1083,11 +1039,6 @@
       .site-logo{
         width:64px;
         height:64px;
-      }
-
-      .logo-wrap::after{
-        width:50px;
-        height:50px;
       }
 
       .logo-text{
