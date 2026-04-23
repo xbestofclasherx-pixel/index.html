@@ -104,6 +104,7 @@
       justify-content:space-between;
       align-items:center;
       gap:20px;
+      flex-wrap:wrap;
     }
 
     .logo-wrap{
@@ -212,40 +213,49 @@
 
     .nav-links{
       display:flex;
-      gap:18px;
+      gap:10px;
       flex-wrap:wrap;
     }
 
     .nav-links a{
       color:var(--muted);
       text-decoration:none;
-      font-size:14px;
+      font-size:13px;
       transition:.25s ease;
       position:relative;
+      padding:10px 14px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.04);
     }
 
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-5px;
-      width:0;
-      height:1px;
-      background:linear-gradient(90deg,var(--red),var(--violet));
-      transition:.25s ease;
-    }
-
-    .nav-links a:hover{
+    .nav-links a:hover,
+    .nav-links a.active{
       color:#fff;
+      background:linear-gradient(90deg, rgba(193,18,31,0.15), rgba(139,92,246,0.18));
+      border-color:rgba(139,92,246,0.24);
+      box-shadow:0 0 20px rgba(139,92,246,0.10);
     }
 
-    .nav-links a:hover::after{
-      width:100%;
+    .page{
+      display:none;
+      position:relative;
+      z-index:1;
+      min-height:calc(100vh - 90px);
+      padding-bottom:30px;
+      animation:fadePage .35s ease;
+    }
+
+    .page.active{
+      display:block;
+    }
+
+    @keyframes fadePage{
+      from{ opacity:0; transform:translateY(8px); }
+      to{ opacity:1; transform:translateY(0); }
     }
 
     .hero{
-      position:relative;
-      z-index:1;
       padding:34px 20px 28px;
     }
 
@@ -378,6 +388,7 @@
       font-weight:800;
       transition:.25s ease;
       border:1px solid transparent;
+      cursor:pointer;
     }
 
     .btn-primary{
@@ -490,8 +501,6 @@
     }
 
     .section{
-      position:relative;
-      z-index:1;
       max-width:var(--max);
       margin:auto;
       padding:34px 20px;
@@ -846,7 +855,7 @@
       }
 
       .nav-links{
-        gap:14px;
+        gap:8px;
       }
 
       .hero-banner{
@@ -924,7 +933,7 @@
       </div>
 
       <div class="nav-links">
-        <a href="#start">Start</a>
+        <a href="#start" class="active">Start</a>
         <a href="#vorgeschichte">Vorgeschichte</a>
         <a href="#aktuelle-lage">Aktuelle Lage</a>
         <a href="#identitaet">Identität</a>
@@ -939,369 +948,399 @@
     </div>
   </nav>
 
-  <section class="hero" id="start">
-    <div class="hero-inner">
-      <div class="hero-banner">
-        <div class="banner-content">
-          <div class="tag">Bewerbung zur Inoff. Orga</div>
-          <h1>
-            Die <span class="gradient">666ers</span><br>
-            nicht perfekt,<br>
-            aber unzerbrechlich.
-          </h1>
-          <span class="glow666">666</span>
+  <main>
+    <section class="page active" id="start">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-banner">
+            <div class="banner-content">
+              <div class="tag">Bewerbung zur Inoff. Orga</div>
+              <h1>
+                Die <span class="gradient">666ers</span><br>
+                nicht perfekt,<br>
+                aber unzerbrechlich.
+              </h1>
+              <span class="glow666">666</span>
+              <p>
+                Wir sind laut, loyal und fallen auf. Wir kommen nicht aus einer perfekten Geschichte,
+                sondern aus echtem Leben. Was nach Chaos aussieht, ist bei uns Struktur mit Haltung.
+                Wir sind hier, um Eindruck zu hinterlassen, Einfluss aufzubauen und uns fest auf der Insel zu verankern.
+              </p>
+              <div class="hero-buttons">
+                <button class="btn btn-primary" data-page="ziele">Unsere Ziele</button>
+                <button class="btn btn-secondary" data-page="struktur">Rangsystem</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-bottom">
+            <div class="hero-stats">
+              <div class="stat">
+                <strong>666</strong>
+                <span>Identität mit Wiedererkennungswert und klarer Linie</span>
+              </div>
+              <div class="stat">
+                <strong>Loyalität</strong>
+                <span>Zusammenhalt steht über allem, wenn es darauf ankommt</span>
+              </div>
+              <div class="stat">
+                <strong>Dominanz</strong>
+                <span>Präsenz in Events, Gebieten und entscheidenden Situationen</span>
+              </div>
+            </div>
+
+            <div class="hero-card">
+              <h3>Auf einen Blick</h3>
+              <ul>
+                <li><strong>Name:</strong> 666ers</li>
+                <li><strong>Motto:</strong> Nicht perfekt, aber unzerbrechlich</li>
+                <li><strong>Fokus:</strong> Dominanz, Loyalität, Zusammenhalt</li>
+                <li><strong>Ausrichtung:</strong> Highway, Ghetto, Gebiete, Geschäfte</li>
+                <li><strong>Identität:</strong> Laut, organisiert, kompromisslos</li>
+                <li><strong>RP-Anspruch:</strong> Wiedererkennbar, aktiv und konsequent</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="vorgeschichte">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Vorgeschichte</h2>
+        <div class="card">
+          <p>Man sagt ja, Familie sucht man sich nicht aus – aber wir würden uns trotzdem immer wieder genauso wählen.</p>
+          <br>
+          <p>Die 666ers sind nicht leise, nicht perfekt und ganz sicher nicht langweilig. Wir kommen nicht aus irgendeiner Hochglanzgeschichte, sondern aus echtem Leben. Sieht nach Chaos aus – aber am Ende des Tages läuft es.</p>
+          <br>
+          <p>Wir sind laut, wir sagen, was wir denken, und manchmal ecken wir an. Aber genau das ist unser Ding. Wenn es darauf ankommt, stehen wir zusammen. Immer.</p>
+          <br>
+          <p>Andere verstehen uns vielleicht nicht sofort. Müssen sie auch nicht, solange wir wissen, wer wir sind und uns unsere Ziele immer vor Augen halten.</p>
+          <br>
+          <p>Die 666ers. Ein bisschen Chaos. Viel Zusammenhalt – und definitiv nichts für schwache Nerven.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="aktuelle-lage">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Aktuelle Lage</h2>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Stand der Familie</h3>
+            <p>
+              Aktuell befindet sich das Familienhaus auf der Hausnummer <strong>928</strong>.
+              Derzeit zählen wir <strong>41 Mitglieder</strong>.
+            </p>
+            <br>
+            <p>
+              Täglich sind bei uns im Schnitt <strong>10–15 Mitglieder aktiv</strong>,
+              am Wochenende sogar bis zu <strong>30 aktive Spieler</strong>.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Fortschritt</h3>
+            <p>
+              Aktuell befinden wir uns auf <strong>Platz 21</strong> und arbeiten uns
+              konstant weiter nach oben.
+            </p>
+            <br>
+            <p>
+              Unser Ziel ist klar definiert:
+              <strong>Top 10 der Familien</strong> und langfristige Dominanz auf der Insel.
+            </p>
+          </div>
+        </div>
+
+        <div class="gallery-grid gallery-3">
+          <div class="image-card">
+            <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000031-cd4a3cd4a5/image.png?ph=7411c51113" alt="Familienhaus der 666ers">
+            <h4>Familienhaus</h4>
+            <p>Das aktuelle Familienhaus mit Hausnummer 928.</p>
+          </div>
+
+          <div class="image-card">
+            <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000025-8435684358/Grand%20Theft%20Auto%20V%20Screenshot%202026.04.13%20-%2023.14.31.13.png?ph=7411c51113" alt="Familienübersicht der 666ers">
+            <h4>Familienübersicht</h4>
+            <p>Einblick in die Familiendaten und Organisation.</p>
+          </div>
+
+          <div class="image-card">
+            <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000029-d45a1d45a3/Grand%20Theft%20Auto%20V%20Screenshot%202026.04.13%20-%2023.15.05.78.png?ph=7411c51113" alt="Ranking der 666ers">
+            <h4>Ranking</h4>
+            <p>Aktuelle Platzierung und Fortschritt Richtung Top 10.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="identitaet">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Identität der Familie</h2>
+        <p class="section-sub">
+          Die 666ers stehen nicht nur für einen Namen, sondern für ein klares Auftreten. Wir wollen nicht austauschbar sein.
+          Unser Anspruch ist eine Familie mit Charakter, Wiedererkennungswert und interner Stärke.
+        </p>
+
+        <div class="mini-grid">
+          <div class="mini-box">
+            <h4>Lautstärke</h4>
+            <p>Wir verstecken uns nicht. Unsere Präsenz soll spürbar sein, im Auftreten, im Verhalten und im RP.</p>
+          </div>
+          <div class="mini-box">
+            <h4>Loyalität</h4>
+            <p>Wer Teil der 666ers ist, steht nicht alleine. In entscheidenden Momenten handeln wir geschlossen.</p>
+          </div>
+          <div class="mini-box">
+            <h4>Disziplin</h4>
+            <p>Hinter dem Chaos steckt Ordnung. Rollen, Zuständigkeiten und Respekt innerhalb der Familie sind Pflicht.</p>
+          </div>
+          <div class="mini-box">
+            <h4>Wiedererkennung</h4>
+            <p>Die Familie soll auf der Insel nicht nur bekannt sein, sondern einen bleibenden Eindruck hinterlassen.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="ziele">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Kernziel & Operative Ziele</h2>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Kernziel</h3>
+            <p>Die 666ers verfolgen kein gewöhnliches Ziel. Wir wollen Geschichte schreiben und die stärkste Familie der Insel werden.</p>
+            <br>
+            <p>Wir sind laut, loyal und fallen auf. Unser Motto lautet: <strong>Nicht perfekt, aber unzerbrechlich.</strong></p>
+            <br>
+            <p>Unser Ziel ist nicht nur kurzfristige Aufmerksamkeit, sondern langfristige Verankerung, Einfluss und Respekt.</p>
+          </div>
+
+          <div class="card">
+            <h3>Operative Ziele</h3>
+            <ul>
+              <li>Events nicht nur mitspielen, sondern dominieren</li>
+              <li>Präsenz auf dem Highway und im Ghetto aufbauen</li>
+              <li>Gebiete und geschäftliche Möglichkeiten strategisch sichern</li>
+              <li>Interne Stärke aufbauen, um nach außen geschlossen aufzutreten</li>
+              <li>Als Familie wachsen, statt nur aus Einzelspielern zu bestehen</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="banner-box">
+          <h3>Keine halben Sachen</h3>
           <p>
-            Wir sind laut, loyal und fallen auf. Wir kommen nicht aus einer perfekten Geschichte,
-            sondern aus echtem Leben. Was nach Chaos aussieht, ist bei uns Struktur mit Haltung.
-            Wir sind hier, um Eindruck zu hinterlassen, Einfluss aufzubauen und uns fest auf der Insel zu verankern.
+            Wir sind nicht nur für ein Stück vom Kuchen gekommen. Wir wollen alles haben. Unsere Familie ist darauf ausgerichtet,
+            sich Schritt für Schritt weiter auszubauen, sich in wichtige Geschehnisse einzubringen und im Roleplay nicht nur sichtbar,
+            sondern relevant zu werden.
           </p>
-          <div class="hero-buttons">
-            <a class="btn btn-primary" href="#ziele">Unsere Ziele</a>
-            <a class="btn btn-secondary" href="#struktur">Rangsystem</a>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="struktur">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Struktur</h2>
+        <p class="section-sub">
+          Wir haben eine feste Ranghierarchie, klare Zuständigkeiten und ein System, das auf Ordnung, Loyalität und interner Stärke basiert.
+          Jeder Rang hat innerhalb der Familie eine Aufgabe und trägt zur Stabilität des Gesamtbildes bei.
+        </p>
+
+        <div class="grid-3">
+          <div class="rank"><h4>10 | Overlord</h4><p>Oberste Führung der Familie und letzte Entscheidungsinstanz.</p></div>
+          <div class="rank"><h4>9 | Arch Demon</h4><p>Direkte Unterstützung der Führung und Kontrolle wichtiger Entscheidungen.</p></div>
+          <div class="rank"><h4>8 | Overseer</h4><p>Überwachung interner Abläufe, Ordnung und Koordination der Familie.</p></div>
+          <div class="rank"><h4>7 | Cult Caller</h4><p>Führung aktiver Mitglieder und Organisation operativer Aktionen.</p></div>
+          <div class="rank"><h4>6 | Soul Harvester</h4><p>Durchsetzungskraft im Außeneinsatz und bei familienrelevanten Aktionen.</p></div>
+          <div class="rank"><h4>5 | Turf Demon</h4><p>Fokus auf Gebiete, Präsenz und Kontrolle wichtiger Punkte.</p></div>
+          <div class="rank"><h4>4 | Demon Disciple</h4><p>Bewährtes Mitglied mit Loyalität, Aktivität und vollem Familienbezug.</p></div>
+          <div class="rank"><h4>3 | Acolyte</h4><p>Mitglied im Aufbau, das sich intern beweist und weiterentwickelt.</p></div>
+          <div class="rank"><h4>1 | Banished</h4><p>Unterste Stufe oder degradiertes Mitglied ohne volles Vertrauen.</p></div>
+          <div class="rank"><h4>2 | Cult Member</h4><p>Aktiver Teil der Familie mit klarer Bindung an die 666ers.</p></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="fuhrpark-kleidung">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Fuhrpark / Kleidung</h2>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Fuhrpark</h3>
+            <p>
+              Unser Fuhrpark steht für Präsenz, Dominanz und Wiedererkennung.
+              Fahrzeuge werden gezielt eingesetzt, um bei Events, im Ghetto
+              und auf dem Highway sichtbar zu sein.
+            </p>
+            <br>
+            <p>
+              Einheitlicher Stil und ein markantes Auftreten sorgen dafür,
+              dass die 666ers auch visuell im Gedächtnis bleiben.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Familienkleidung</h3>
+            <p>
+              Unsere Kleidung ist Teil unserer Identität.
+              Jedes Mitglied trägt den Stil der Familie und sorgt
+              für ein geschlossenes Gesamtbild.
+            </p>
+            <br>
+            <p>
+              Der Look ist klar definiert:
+              <strong>düster, dominant und unverkennbar 666</strong>.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div class="hero-bottom">
-        <div class="hero-stats">
-          <div class="stat">
-            <strong>666</strong>
-            <span>Identität mit Wiedererkennungswert und klarer Linie</span>
+        <div class="gallery-grid">
+          <div class="image-card tall">
+            <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000033-e3342e3344/fuhrpark.png?ph=7411c51113" alt="Fuhrpark der 666ers">
+            <h4>Fuhrpark</h4>
+            <p>Der Fuhrpark der Familie als Teil der Außenwirkung.</p>
           </div>
-          <div class="stat">
-            <strong>Loyalität</strong>
-            <span>Zusammenhalt steht über allem, wenn es darauf ankommt</span>
-          </div>
-          <div class="stat">
-            <strong>Dominanz</strong>
-            <span>Präsenz in Events, Gebieten und entscheidenden Situationen</span>
+
+          <div class="image-card tall">
+            <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000037-26dec26dee/image-5.png?ph=7411c51113" alt="Familienkleidung der 666ers">
+            <h4>Kleidung</h4>
+            <p>Ein fester Familienlook für Wiedererkennung und Stil.</p>
           </div>
         </div>
 
-        <div class="hero-card">
-          <h3>Auf einen Blick</h3>
-          <ul>
-            <li><strong>Name:</strong> 666ers</li>
-            <li><strong>Motto:</strong> Nicht perfekt, aber unzerbrechlich</li>
-            <li><strong>Fokus:</strong> Dominanz, Loyalität, Zusammenhalt</li>
-            <li><strong>Ausrichtung:</strong> Highway, Ghetto, Gebiete, Geschäfte</li>
-            <li><strong>Identität:</strong> Laut, organisiert, kompromisslos</li>
-            <li><strong>RP-Anspruch:</strong> Wiedererkennbar, aktiv und konsequent</li>
-          </ul>
+        <div class="gallery-grid">
+          <div class="image-card tall">
+            <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000039-7524475246/image-6.png?ph=7411c51113" alt="Weitere Familienkleidung der 666ers">
+            <h4>Fam-Kleidung</h4>
+            <p>Weitere Ansicht der Kleidung im 666ers-Stil.</p>
+          </div>
+
+          <div class="image-card tall">
+            <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000027-5500755009/Grand%20Theft%20Auto%20V%20Screenshot%202026.04.13%20-%2023.14.48.18.png?ph=7411c51113" alt="Mitgliederübersicht der 666ers">
+            <h4>Mitgliederübersicht</h4>
+            <p>Ein zusätzlicher Einblick in die Familienstruktur.</p>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </section>
 
-  <section class="section" id="vorgeschichte">
-    <div class="section-line"></div>
-    <h2>Vorgeschichte</h2>
-    <div class="card">
-      <p>Man sagt ja, Familie sucht man sich nicht aus – aber wir würden uns trotzdem immer wieder genauso wählen.</p>
-      <br>
-      <p>Die 666ers sind nicht leise, nicht perfekt und ganz sicher nicht langweilig. Wir kommen nicht aus irgendeiner Hochglanzgeschichte, sondern aus echtem Leben. Sieht nach Chaos aus – aber am Ende des Tages läuft es.</p>
-      <br>
-      <p>Wir sind laut, wir sagen, was wir denken, und manchmal ecken wir an. Aber genau das ist unser Ding. Wenn es darauf ankommt, stehen wir zusammen. Immer.</p>
-      <br>
-      <p>Andere verstehen uns vielleicht nicht sofort. Müssen sie auch nicht, solange wir wissen, wer wir sind und uns unsere Ziele immer vor Augen halten.</p>
-      <br>
-      <p>Die 666ers. Ein bisschen Chaos. Viel Zusammenhalt – und definitiv nichts für schwache Nerven.</p>
-    </div>
-  </section>
+    <section class="page" id="modell">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Geschäftsmodell</h2>
 
-  <section class="section" id="aktuelle-lage">
-    <div class="section-line"></div>
-    <h2>Aktuelle Lage</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Stand der Familie</h3>
-        <p>
-          Aktuell befindet sich das Familienhaus auf der Hausnummer <strong>928</strong>.
-          Derzeit zählen wir <strong>41 Mitglieder</strong>.
-        </p>
-        <br>
-        <p>
-          Täglich sind bei uns im Schnitt <strong>10–15 Mitglieder aktiv</strong>,
-          am Wochenende sogar bis zu <strong>30 aktive Spieler</strong>.
-        </p>
-      </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Turf Team</h3>
+            <p>Unser Turf Team fokussiert sich darauf, Gebiete und Geschäfte zu übernehmen und unsere Präsenz Schritt für Schritt weiter auszubauen. Dabei geht es nicht nur um Besitz, sondern auch um Einfluss, Sichtbarkeit und Kontrolle.</p>
+          </div>
+          <div class="card">
+            <h3>Business Team</h3>
+            <p>Zeitgleich kümmert sich unser Business Team um Solarpanele, Beete und weitere Geschäfte, um die Familie wirtschaftlich zu stärken und eine stabile Grundlage für weiteres Wachstum zu schaffen.</p>
+          </div>
+        </div>
 
-      <div class="card">
-        <h3>Fortschritt</h3>
-        <p>
-          Aktuell befinden wir uns auf <strong>Platz 28</strong> und arbeiten uns
-          konstant weiter nach oben.
-        </p>
-        <br>
-        <p>
-          Unser Ziel ist klar definiert:
-          <strong>Top 10 der Familien</strong> und langfristige Dominanz auf der Insel.
-        </p>
-      </div>
-    </div>
+        <div class="card" style="margin-top:20px;">
+          <p>Zusammen mit beiden Teams sind wir auf einem guten Weg, uns immer weiter auszubauen und gemeinsam als Familie zu wachsen. Wirtschaftliche Stärke und territoriale Präsenz sollen bei uns Hand in Hand gehen.</p>
+        </div>
+      </section>
+    </section>
 
-    <div class="gallery-grid gallery-3">
-      <div class="image-card">
-        <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000031-cd4a3cd4a5/image.png?ph=7411c51113" alt="Familienhaus der 666ers">
-        <h4>Familienhaus</h4>
-        <p>Das aktuelle Familienhaus mit Hausnummer 928.</p>
-      </div>
+    <section class="page" id="praesenz">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Präsenz auf der Insel</h2>
 
-      <div class="image-card">
-        <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000025-8435684358/Grand%20Theft%20Auto%20V%20Screenshot%202026.04.13%20-%2023.14.31.13.png?ph=7411c51113" alt="Familienübersicht der 666ers">
-        <h4>Familienübersicht</h4>
-        <p>Einblick in die Familiendaten und Organisation.</p>
-      </div>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Außenwirkung</h3>
+            <p>Die 666ers sollen nicht übersehen werden. Unser Auftreten soll klar, geschlossen und wiedererkennbar sein.</p>
+          </div>
+          <div class="card">
+            <h3>Beziehungen</h3>
+            <p>Wir setzen auf Diplomatie, wo sie sinnvoll ist, und auf Konfrontation, wenn sie notwendig wird.</p>
+          </div>
+          <div class="card">
+            <h3>Einfluss</h3>
+            <p>Langfristig wollen wir ein fester Bestandteil der Kultur der Insel und ein permanenter Teil des kriminellen Netzwerks werden.</p>
+          </div>
+        </div>
+      </section>
+    </section>
 
-      <div class="image-card">
-        <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000029-d45a1d45a3/Grand%20Theft%20Auto%20V%20Screenshot%202026.04.13%20-%2023.15.05.78.png?ph=7411c51113" alt="Ranking der 666ers">
-        <h4>Ranking</h4>
-        <p>Aktuelle Platzierung und Fortschritt Richtung Top 10.</p>
-      </div>
-    </div>
-  </section>
+    <section class="page" id="vision">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Vision</h2>
 
-  <section class="section" id="identitaet">
-    <div class="section-line"></div>
-    <h2>Identität der Familie</h2>
-    <p class="section-sub">
-      Die 666ers stehen nicht nur für einen Namen, sondern für ein klares Auftreten. Wir wollen nicht austauschbar sein.
-      Unser Anspruch ist eine Familie mit Charakter, Wiedererkennungswert und interner Stärke.
-    </p>
-    <div class="mini-grid">
-      <div class="mini-box">
-        <h4>Lautstärke</h4>
-        <p>Wir verstecken uns nicht. Unsere Präsenz soll spürbar sein, im Auftreten, im Verhalten und im RP.</p>
-      </div>
-      <div class="mini-box">
-        <h4>Loyalität</h4>
-        <p>Wer Teil der 666ers ist, steht nicht alleine. In entscheidenden Momenten handeln wir geschlossen.</p>
-      </div>
-      <div class="mini-box">
-        <h4>Disziplin</h4>
-        <p>Hinter dem Chaos steckt Ordnung. Rollen, Zuständigkeiten und Respekt innerhalb der Familie sind Pflicht.</p>
-      </div>
-      <div class="mini-box">
-        <h4>Wiedererkennung</h4>
-        <p>Die Familie soll auf der Insel nicht nur bekannt sein, sondern einen bleibenden Eindruck hinterlassen.</p>
-      </div>
-    </div>
-  </section>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Diplomatie & Beziehungen</h3>
+            <p>Wir verfügen bereits über Beziehungen zu anderen Organisationen und Familien, halten Diplomatie aufrecht und konfrontieren jene, die uns im Weg stehen. Unser Ziel ist es, nicht isoliert zu handeln, sondern strategisch.</p>
+          </div>
+          <div class="card">
+            <h3>Langfristige Verankerung</h3>
+            <p>Wir, die 666ers, streben an, uns fest in der Kultur der Insel zu verankern und ein permanenter Teil des kriminellen Netzwerks zu werden. Nicht als kurzer Trend, sondern als Name mit Gewicht.</p>
+          </div>
+        </div>
+      </section>
+    </section>
 
-  <section class="section" id="ziele">
-    <div class="section-line"></div>
-    <h2>Kernziel & Operative Ziele</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Kernziel</h3>
-        <p>Die 666ers verfolgen kein gewöhnliches Ziel. Wir wollen Geschichte schreiben und die stärkste Familie der Insel werden.</p>
-        <br>
-        <p>Wir sind laut, loyal und fallen auf. Unser Motto lautet: <strong>Nicht perfekt, aber unzerbrechlich.</strong></p>
-        <br>
-        <p>Unser Ziel ist nicht nur kurzfristige Aufmerksamkeit, sondern langfristige Verankerung, Einfluss und Respekt.</p>
-      </div>
+    <section class="page" id="impressum">
+      <section class="section">
+        <div class="section-line"></div>
+        <h2>Impressum</h2>
 
-      <div class="card">
-        <h3>Operative Ziele</h3>
-        <ul>
-          <li>Events nicht nur mitspielen, sondern dominieren</li>
-          <li>Präsenz auf dem Highway und im Ghetto aufbauen</li>
-          <li>Gebiete und geschäftliche Möglichkeiten strategisch sichern</li>
-          <li>Interne Stärke aufbauen, um nach außen geschlossen aufzutreten</li>
-          <li>Als Familie wachsen, statt nur aus Einzelspielern zu bestehen</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Kontakt</h3>
+            <p><strong>Oberhaupt:</strong><br>Ayato Vermillion | 7847</p>
+            <br>
+            <p><strong>Co-Oberhaupt:</strong><br>Steven Demon | 35555</p>
+            <br>
+            <p><strong>Discord Leader (OG):</strong><br>justvermillionsenpai</p>
+            <br>
+            <p><strong>Discord Vize:</strong><br>kyro.030</p>
+          </div>
 
-  <section class="section">
-    <div class="banner-box">
-      <h3>Keine halben Sachen</h3>
-      <p>
-        Wir sind nicht nur für ein Stück vom Kuchen gekommen. Wir wollen alles haben. Unsere Familie ist darauf ausgerichtet,
-        sich Schritt für Schritt weiter auszubauen, sich in wichtige Geschehnisse einzubringen und im Roleplay nicht nur sichtbar,
-        sondern relevant zu werden.
-      </p>
-    </div>
-  </section>
+          <div class="card">
+            <h3>Angaben</h3>
+            <p><strong>Familie:</strong><br>666ers</p>
+            <br>
+            <p><strong>Hausnummer:</strong><br>928</p>
+            <br>
+            <p><strong>Verantwortlich:</strong><br>Ayato Vermillion</p>
+            <br>
+            <p>
+              <strong>Hinweis:</strong><br>
+              Diese Organisation existiert ausschließlich innerhalb eines
+              Roleplay-Servers. Alle Inhalte sind fiktiv und dienen nur dem RP.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  <section class="section" id="struktur">
-    <div class="section-line"></div>
-    <h2>Struktur</h2>
-    <p class="section-sub">
-      Wir haben eine feste Ranghierarchie, klare Zuständigkeiten und ein System, das auf Ordnung, Loyalität und interner Stärke basiert.
-      Jeder Rang hat innerhalb der Familie eine Aufgabe und trägt zur Stabilität des Gesamtbildes bei.
-    </p>
-
-    <div class="grid-3">
-      <div class="rank"><h4>10 | Overlord</h4><p>Oberste Führung der Familie und letzte Entscheidungsinstanz.</p></div>
-      <div class="rank"><h4>9 | Arch Demon</h4><p>Direkte Unterstützung der Führung und Kontrolle wichtiger Entscheidungen.</p></div>
-      <div class="rank"><h4>8 | Overseer</h4><p>Überwachung interner Abläufe, Ordnung und Koordination der Familie.</p></div>
-      <div class="rank"><h4>7 | Cult Caller</h4><p>Führung aktiver Mitglieder und Organisation operativer Aktionen.</p></div>
-      <div class="rank"><h4>6 | Soul Harvester</h4><p>Durchsetzungskraft im Außeneinsatz und bei familienrelevanten Aktionen.</p></div>
-      <div class="rank"><h4>5 | Turf Demon</h4><p>Fokus auf Gebiete, Präsenz und Kontrolle wichtiger Punkte.</p></div>
-      <div class="rank"><h4>4 | Demon Disciple</h4><p>Bewährtes Mitglied mit Loyalität, Aktivität und vollem Familienbezug.</p></div>
-      <div class="rank"><h4>3 | Acolyte</h4><p>Mitglied im Aufbau, das sich intern beweist und weiterentwickelt.</p></div>
-      <div class="rank"><h4>2 | Cult Member</h4><p>Aktiver Teil der Familie mit klarer Bindung an die 666ers.</p></div>
-      <div class="rank"><h4>1 | Banished</h4><p>Unterste Stufe oder degradiertes Mitglied ohne volles Vertrauen.</p></div>
-    </div>
-  </section>
-
-  <section class="section" id="fuhrpark-kleidung">
-    <div class="section-line"></div>
-    <h2>Fuhrpark / Kleidung</h2>
-
-    <div class="grid-2">
-      <div class="card">
-        <h3>Fuhrpark</h3>
-        <p>
-          Unser Fuhrpark steht für Präsenz, Dominanz und Wiedererkennung.
-          Fahrzeuge werden gezielt eingesetzt, um bei Events, im Ghetto
-          und auf dem Highway sichtbar zu sein.
-        </p>
-        <br>
-        <p>
-          Einheitlicher Stil und ein markantes Auftreten sorgen dafür,
-          dass die 666ers auch visuell im Gedächtnis bleiben.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Familienkleidung</h3>
-        <p>
-          Unsere Kleidung ist Teil unserer Identität.
-          Jedes Mitglied trägt den Stil der Familie und sorgt
-          für ein geschlossenes Gesamtbild.
-        </p>
-        <br>
-        <p>
-          Der Look ist klar definiert:
-          <strong>düster, dominant und unverkennbar 666</strong>.
-        </p>
-      </div>
-    </div>
-
-    <div class="gallery-grid">
-      <div class="image-card tall">
-        <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000033-e3342e3344/fuhrpark.png?ph=7411c51113" alt="Fuhrpark der 666ers">
-        <h4>Fuhrpark</h4>
-        <p>Der Fuhrpark der Familie als Teil der Außenwirkung.</p>
-      </div>
-
-      <div class="image-card tall">
-        <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000037-26dec26dee/image-5.png?ph=7411c51113" alt="Familienkleidung der 666ers">
-        <h4>Kleidung</h4>
-        <p>Ein fester Familienlook für Wiedererkennung und Stil.</p>
-      </div>
-    </div>
-
-    <div class="gallery-grid">
-      <div class="image-card tall">
-        <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000039-7524475246/image-6.png?ph=7411c51113" alt="Weitere Familienkleidung der 666ers">
-        <h4>Fam-Kleidung</h4>
-        <p>Weitere Ansicht der Kleidung im 666ers-Stil.</p>
-      </div>
-
-      <div class="image-card tall">
-        <img src="https://7411c51113.cbaul-cdnwnd.com/a47630238f18b44c00d8b91e2c84739b/200000027-5500755009/Grand%20Theft%20Auto%20V%20Screenshot%202026.04.13%20-%2023.14.48.18.png?ph=7411c51113" alt="Mitgliederübersicht der 666ers">
-        <h4>Mitgliederübersicht</h4>
-        <p>Ein zusätzlicher Einblick in die Familienstruktur.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="modell">
-    <div class="section-line"></div>
-    <h2>Geschäftsmodell</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Turf Team</h3>
-        <p>Unser Turf Team fokussiert sich darauf, Gebiete und Geschäfte zu übernehmen und unsere Präsenz Schritt für Schritt weiter auszubauen. Dabei geht es nicht nur um Besitz, sondern auch um Einfluss, Sichtbarkeit und Kontrolle.</p>
-      </div>
-      <div class="card">
-        <h3>Business Team</h3>
-        <p>Zeitgleich kümmert sich unser Business Team um Solarpanele, Beete und weitere Geschäfte, um die Familie wirtschaftlich zu stärken und eine stabile Grundlage für weiteres Wachstum zu schaffen.</p>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:20px;">
-      <p>Zusammen mit beiden Teams sind wir auf einem guten Weg, uns immer weiter auszubauen und gemeinsam als Familie zu wachsen. Wirtschaftliche Stärke und territoriale Präsenz sollen bei uns Hand in Hand gehen.</p>
-    </div>
-  </section>
-
-  <section class="section" id="praesenz">
-    <div class="section-line"></div>
-    <h2>Präsenz auf der Insel</h2>
-    <div class="grid-3">
-      <div class="card">
-        <h3>Außenwirkung</h3>
-        <p>Die 666ers sollen nicht übersehen werden. Unser Auftreten soll klar, geschlossen und wiedererkennbar sein.</p>
-      </div>
-      <div class="card">
-        <h3>Beziehungen</h3>
-        <p>Wir setzen auf Diplomatie, wo sie sinnvoll ist, und auf Konfrontation, wenn sie notwendig wird.</p>
-      </div>
-      <div class="card">
-        <h3>Einfluss</h3>
-        <p>Langfristig wollen wir ein fester Bestandteil der Kultur der Insel und ein permanenter Teil des kriminellen Netzwerks werden.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="vision">
-    <div class="section-line"></div>
-    <h2>Vision</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Diplomatie & Beziehungen</h3>
-        <p>Wir verfügen bereits über Beziehungen zu anderen Organisationen und Familien, halten Diplomatie aufrecht und konfrontieren jene, die uns im Weg stehen. Unser Ziel ist es, nicht isoliert zu handeln, sondern strategisch.</p>
-      </div>
-      <div class="card">
-        <h3>Langfristige Verankerung</h3>
-        <p>Wir, die 666ers, streben an, uns fest in der Kultur der Insel zu verankern und ein permanenter Teil des kriminellen Netzwerks zu werden. Nicht als kurzer Trend, sondern als Name mit Gewicht.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="impressum">
-    <div class="section-line"></div>
-    <h2>Impressum</h2>
-
-    <div class="grid-2">
-      <div class="card">
-        <h3>Kontakt</h3>
-        <p><strong>Oberhaupt:</strong><br>Ayato Vermillion | 7847</p>
-        <br>
-        <p><strong>Co-Oberhaupt:</strong><br>Steven Demon | 35555</p>
-        <br>
-        <p><strong>Discord Leader (OG):</strong><br>justvermillionsenpai</p>
-        <br>
-        <p><strong>Discord Vize:</strong><br>kyro.030</p>
-      </div>
-
-      <div class="card">
-        <h3>Angaben</h3>
-        <p><strong>Familie:</strong><br>666ers</p>
-        <br>
-        <p><strong>Hausnummer:</strong><br>928</p>
-        <br>
-        <p><strong>Verantwortlich:</strong><br>Ayato Vermillion</p>
-        <br>
-        <p>
-          <strong>Hinweis:</strong><br>
-          Diese Organisation existiert ausschließlich innerhalb eines
-          Roleplay-Servers. Alle Inhalte sind fiktiv und dienen nur dem RP.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="quote-box">
-      <h3>666ers</h3>
-      <p>Ein bisschen Chaos. Viel Zusammenhalt. Keine halben Sachen. Wer uns kennt, weiß, was wir mitbringen. Wer uns nicht kennt, wird es merken.</p>
-    </div>
-  </section>
+      <section class="section">
+        <div class="quote-box">
+          <h3>666ers</h3>
+          <p>Ein bisschen Chaos. Viel Zusammenhalt. Keine halben Sachen. Wer uns kennt, weiß, was wir mitbringen. Wer uns nicht kennt, wird es merken.</p>
+        </div>
+      </section>
+    </section>
+  </main>
 
   <footer>
     <p><strong>Familie 666ers</strong></p>
@@ -1317,6 +1356,52 @@
   </div>
 
   <script>
+    const pages = document.querySelectorAll(".page");
+    const navLinks = document.querySelectorAll(".nav-links a");
+    const pageButtons = document.querySelectorAll("[data-page]");
+
+    function showPage(pageId) {
+      pages.forEach(page => {
+        page.classList.remove("active");
+      });
+
+      const activePage = document.getElementById(pageId) || document.getElementById("start");
+      activePage.classList.add("active");
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + activePage.id) {
+          link.classList.add("active");
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href").replace("#", "");
+        history.replaceState(null, "", "#" + targetId);
+        showPage(targetId);
+      });
+    });
+
+    pageButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.dataset.page;
+        history.replaceState(null, "", "#" + targetId);
+        showPage(targetId);
+      });
+    });
+
+    const initialHash = window.location.hash.replace("#", "");
+    if (initialHash && document.getElementById(initialHash)) {
+      showPage(initialHash);
+    } else {
+      showPage("start");
+    }
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
     const lightboxCaption = document.getElementById("lightboxCaption");
