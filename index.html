@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>666ers | Inoff. Bewerbung</title>
   <style>
     :root{
       --bg:#05060a;
-      --panel:rgba(15,18,28,0.88);
-      --panel2:rgba(22,26,40,0.92);
+      --bg2:#090b12;
+      --panel:rgba(14,18,28,0.88);
+      --panel2:rgba(20,24,38,0.94);
       --text:#f4f4f7;
       --muted:#b8bcc8;
+      --muted2:#8c92a3;
       --red:#c1121f;
       --red2:#ff3b4d;
       --blue:#7dd3fc;
       --violet:#8b5cf6;
-      --line:rgba(139,92,246,0.25);
+      --line:rgba(139,92,246,0.22);
       --shadow:0 0 30px rgba(139,92,246,0.18);
+      --shadow-red:0 0 30px rgba(193,18,31,0.16);
     }
 
     *{
@@ -33,11 +36,48 @@
       font-family:Arial, Helvetica, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at top left, rgba(193,18,31,0.22), transparent 28%),
-        radial-gradient(circle at top right, rgba(125,211,252,0.12), transparent 26%),
-        radial-gradient(circle at center, rgba(139,92,246,0.08), transparent 35%),
+        radial-gradient(circle at top left, rgba(193,18,31,0.20), transparent 28%),
+        radial-gradient(circle at top right, rgba(125,211,252,0.10), transparent 24%),
+        radial-gradient(circle at center, rgba(139,92,246,0.08), transparent 36%),
         linear-gradient(180deg,#04050a 0%,#090b12 45%,#05060a 100%);
       overflow-x:hidden;
+      position:relative;
+    }
+
+    .particles{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .particle{
+      position:absolute;
+      bottom:-20px;
+      width:4px;
+      height:4px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.18);
+      animation:floatUp linear infinite;
+      filter:blur(0.3px);
+    }
+
+    .particle:nth-child(3n){ background:rgba(139,92,246,0.24); }
+    .particle:nth-child(4n){ background:rgba(193,18,31,0.24); }
+    .particle:nth-child(5n){ background:rgba(125,211,252,0.22); }
+
+    @keyframes floatUp{
+      from{
+        transform:translateY(0) scale(1);
+        opacity:0;
+      }
+      10%{ opacity:1; }
+      90%{ opacity:0.55; }
+      to{
+        transform:translateY(-115vh) scale(1.6);
+        opacity:0;
+      }
     }
 
     .bg-glow{
@@ -45,16 +85,16 @@
       inset:0;
       pointer-events:none;
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,59,77,0.08), transparent 20%),
-        radial-gradient(circle at 80% 15%, rgba(125,211,252,0.08), transparent 20%),
-        radial-gradient(circle at 50% 50%, rgba(139,92,246,0.06), transparent 28%);
+        radial-gradient(circle at 18% 16%, rgba(255,59,77,0.08), transparent 18%),
+        radial-gradient(circle at 82% 12%, rgba(125,211,252,0.07), transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,0.05), transparent 24%);
       z-index:0;
     }
 
     .navbar{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:60;
       backdrop-filter:blur(12px);
       background:rgba(5,7,12,0.72);
       border-bottom:1px solid rgba(255,255,255,0.06);
@@ -71,12 +111,12 @@
     }
 
     .logo{
-      font-size:28px;
+      font-size:30px;
       font-weight:900;
       letter-spacing:2px;
       text-transform:uppercase;
       color:#fff;
-      text-shadow:0 0 12px rgba(139,92,246,0.4);
+      text-shadow:0 0 18px rgba(139,92,246,0.35);
     }
 
     .logo span{
@@ -106,7 +146,7 @@
       min-height:100vh;
       display:flex;
       align-items:center;
-      padding:70px 20px 40px;
+      padding:40px 20px 50px;
     }
 
     .hero-inner{
@@ -114,9 +154,42 @@
       margin:auto;
       width:100%;
       display:grid;
-      grid-template-columns:1.2fr 0.8fr;
+      grid-template-columns:1fr;
       gap:30px;
       align-items:center;
+    }
+
+    .hero-banner{
+      position:relative;
+      height:420px;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 0 30px rgba(139,92,246,0.20),
+        0 0 50px rgba(193,18,31,0.10);
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.55)),
+        url("banner-666ers.png");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+
+    .hero-banner::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(5,6,10,0.05) 0%, rgba(5,6,10,0.12) 40%, rgba(5,6,10,0.78) 100%);
+    }
+
+    .banner-content{
+      position:absolute;
+      left:32px;
+      bottom:28px;
+      z-index:2;
+      max-width:700px;
     }
 
     .tag{
@@ -130,33 +203,51 @@
       font-size:14px;
     }
 
-    .hero h1{
-      font-size:clamp(52px,8vw,100px);
+    .banner-content h1{
+      font-size:clamp(42px,6vw,78px);
       line-height:0.92;
       text-transform:uppercase;
-      margin-bottom:18px;
-      letter-spacing:1px;
+      margin-bottom:14px;
+      letter-spacing:2px;
+      text-shadow:
+        0 0 6px rgba(255,255,255,0.45),
+        0 0 18px rgba(139,92,246,0.45),
+        0 0 40px rgba(193,18,31,0.35);
     }
 
     .gradient{
-      background:linear-gradient(90deg,#fff 0%,#d3d7e5 35%,#8b5cf6 68%,#7dd3fc 100%);
+      background:linear-gradient(90deg,#ffffff 0%,#e0e3ef 30%,#8b5cf6 65%,#7dd3fc 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
     }
 
-    .hero p{
-      font-size:18px;
-      color:var(--muted);
-      max-width:760px;
-      margin-bottom:28px;
+    .banner-content p{
+      font-size:17px;
+      color:#d7d9e2;
+      max-width:620px;
       line-height:1.7;
+      margin-bottom:18px;
+      text-shadow:0 0 12px rgba(0,0,0,0.45);
+    }
+
+    .glow666{
+      display:block;
+      font-size:clamp(24px,4vw,40px);
+      margin-bottom:14px;
+      color:#fff;
+      text-shadow:
+        0 0 6px rgba(255,255,255,0.5),
+        0 0 16px rgba(139,92,246,0.55),
+        0 0 34px rgba(193,18,31,0.4);
+      letter-spacing:8px;
     }
 
     .hero-buttons{
       display:flex;
       gap:14px;
       flex-wrap:wrap;
+      margin-top:8px;
     }
 
     .btn{
@@ -177,11 +268,43 @@
     .btn-secondary{
       color:#fff;
       border:1px solid rgba(255,255,255,0.12);
-      background:rgba(255,255,255,0.03);
+      background:rgba(255,255,255,0.05);
     }
 
     .btn:hover{
       transform:translateY(-2px);
+    }
+
+    .hero-bottom{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:22px;
+    }
+
+    .hero-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .stat{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:22px;
+      margin-bottom:6px;
+      color:#fff;
+    }
+
+    .stat span{
+      color:var(--muted2);
+      font-size:14px;
+      line-height:1.5;
     }
 
     .hero-card{
@@ -197,23 +320,27 @@
     .hero-card::before{
       content:"666";
       position:absolute;
-      right:-10px;
-      top:-20px;
-      font-size:120px;
+      right:-8px;
+      top:-26px;
+      font-size:128px;
       font-weight:900;
       color:rgba(255,255,255,0.03);
-      transform:rotate(-10deg);
+      transform:rotate(-8deg);
     }
 
     .hero-card h3{
       font-size:24px;
       margin-bottom:16px;
+      position:relative;
+      z-index:1;
     }
 
     .hero-card ul{
       padding-left:18px;
       color:var(--muted);
       line-height:1.9;
+      position:relative;
+      z-index:1;
     }
 
     .section{
@@ -221,11 +348,11 @@
       z-index:1;
       max-width:1200px;
       margin:auto;
-      padding:36px 20px;
+      padding:38px 20px;
     }
 
     .section-line{
-      width:70px;
+      width:72px;
       height:4px;
       border-radius:999px;
       margin-bottom:16px;
@@ -245,6 +372,18 @@
       max-width:850px;
       margin-bottom:24px;
       line-height:1.7;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:22px;
     }
 
     .card{
@@ -269,16 +408,30 @@
       padding-left:18px;
     }
 
-    .grid-2{
+    .mini-grid{
       display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:22px;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
     }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:22px;
+    .mini-box{
+      background:var(--panel2);
+      border:1px solid rgba(255,255,255,0.07);
+      border-radius:20px;
+      padding:20px;
+      text-align:left;
+      box-shadow:var(--shadow-red);
+    }
+
+    .mini-box h4{
+      margin-bottom:10px;
+      font-size:18px;
+    }
+
+    .mini-box p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
     }
 
     .rank{
@@ -306,9 +459,49 @@
       font-size:15px;
     }
 
+    .banner-box{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(193,18,31,0.20), transparent 30%),
+        radial-gradient(circle at 80% 25%, rgba(125,211,252,0.12), transparent 30%),
+        linear-gradient(135deg, rgba(20,18,30,0.92), rgba(10,12,18,0.95));
+      padding:34px 28px;
+      box-shadow:var(--shadow);
+    }
+
+    .banner-box::before{
+      content:"666";
+      position:absolute;
+      right:18px;
+      bottom:-10px;
+      font-size:150px;
+      font-weight:900;
+      color:rgba(255,255,255,0.03);
+      letter-spacing:8px;
+    }
+
+    .banner-box h3{
+      font-size:32px;
+      text-transform:uppercase;
+      margin-bottom:12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .banner-box p{
+      color:var(--muted);
+      max-width:760px;
+      line-height:1.8;
+      position:relative;
+      z-index:1;
+    }
+
     .quote-box{
       text-align:center;
-      padding:40px 24px;
+      padding:46px 24px;
       border:1px solid rgba(255,255,255,0.08);
       border-radius:28px;
       background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
@@ -316,14 +509,15 @@
     }
 
     .quote-box h3{
-      font-size:32px;
+      font-size:34px;
       margin-bottom:16px;
       text-transform:uppercase;
+      letter-spacing:4px;
     }
 
     .quote-box p{
       color:var(--muted);
-      max-width:780px;
+      max-width:800px;
       margin:auto;
       line-height:1.8;
     }
@@ -338,16 +532,23 @@
       text-align:center;
     }
 
-    @media (max-width:960px){
-      .hero-inner,
+    @media (max-width:1100px){
+      .mini-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width:980px){
+      .hero-bottom,
       .grid-2,
-      .grid-3{
+      .grid-3,
+      .hero-stats{
         grid-template-columns:1fr;
       }
 
       .hero{
         min-height:auto;
-        padding-top:50px;
+        padding-top:26px;
       }
 
       .nav-inner{
@@ -355,13 +556,39 @@
         align-items:flex-start;
       }
 
-      .hero h1{
-        line-height:1;
+      .mini-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-banner{
+        height:340px;
+      }
+
+      .banner-content{
+        left:20px;
+        right:20px;
+        bottom:20px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="particles">
+    <span class="particle" style="left:5%;animation-duration:17s;animation-delay:0s;"></span>
+    <span class="particle" style="left:11%;animation-duration:14s;animation-delay:2s;"></span>
+    <span class="particle" style="left:18%;animation-duration:16s;animation-delay:4s;"></span>
+    <span class="particle" style="left:25%;animation-duration:12s;animation-delay:1s;"></span>
+    <span class="particle" style="left:33%;animation-duration:18s;animation-delay:3s;"></span>
+    <span class="particle" style="left:40%;animation-duration:15s;animation-delay:5s;"></span>
+    <span class="particle" style="left:47%;animation-duration:13s;animation-delay:2s;"></span>
+    <span class="particle" style="left:55%;animation-duration:17s;animation-delay:6s;"></span>
+    <span class="particle" style="left:62%;animation-duration:14s;animation-delay:1s;"></span>
+    <span class="particle" style="left:70%;animation-duration:19s;animation-delay:3s;"></span>
+    <span class="particle" style="left:78%;animation-duration:16s;animation-delay:2s;"></span>
+    <span class="particle" style="left:86%;animation-duration:13s;animation-delay:4s;"></span>
+    <span class="particle" style="left:93%;animation-duration:18s;animation-delay:1s;"></span>
+  </div>
+
   <div class="bg-glow"></div>
 
   <nav class="navbar">
@@ -370,9 +597,11 @@
       <div class="nav-links">
         <a href="#start">Start</a>
         <a href="#vorgeschichte">Vorgeschichte</a>
+        <a href="#identitaet">Identität</a>
         <a href="#ziele">Ziele</a>
         <a href="#struktur">Struktur</a>
         <a href="#modell">Geschäftsmodell</a>
+        <a href="#praesenz">Präsenz</a>
         <a href="#vision">Vision</a>
       </div>
     </div>
@@ -380,33 +609,54 @@
 
   <section class="hero" id="start">
     <div class="hero-inner">
-      <div>
-        <div class="tag">Inoffizielle GrandRP Bewerbung</div>
-        <h1>
-          Die <span class="gradient">666ers</span><br>
-          nicht perfekt,<br>
-          aber unzerbrechlich.
-        </h1>
-        <p>
-          Wir sind laut, loyal und fallen auf. Wir kommen nicht aus einer perfekten Geschichte,
-          sondern aus echtem Leben. Nach außen Chaos, im Kern Zusammenhalt. Unser Ziel ist nicht,
-          einfach mitzuspielen. Unser Ziel ist Dominanz.
-        </p>
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#ziele">Unsere Ziele</a>
-          <a class="btn btn-secondary" href="#struktur">Rangsystem</a>
+      <div class="hero-banner">
+        <div class="banner-content">
+          <div class="tag">Inoffizielle GrandRP Bewerbung</div>
+          <h1>
+            Die <span class="gradient">666ers</span><br>
+            nicht perfekt,<br>
+            aber unzerbrechlich.
+          </h1>
+          <span class="glow666">666</span>
+          <p>
+            Wir sind laut, loyal und fallen auf. Wir kommen nicht aus einer perfekten Geschichte,
+            sondern aus echtem Leben. Was nach Chaos aussieht, ist bei uns Struktur mit Haltung.
+            Wir sind hier, um Eindruck zu hinterlassen, Einfluss aufzubauen und uns fest auf der Insel zu verankern.
+          </p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#ziele">Unsere Ziele</a>
+            <a class="btn btn-secondary" href="#struktur">Rangsystem</a>
+          </div>
         </div>
       </div>
 
-      <div class="hero-card">
-        <h3>Auf einen Blick</h3>
-        <ul>
-          <li><strong>Name:</strong> 666ers</li>
-          <li><strong>Motto:</strong> Nicht perfekt, aber unzerbrechlich</li>
-          <li><strong>Fokus:</strong> Dominanz, Loyalität, Zusammenhalt</li>
-          <li><strong>Ausrichtung:</strong> Highway, Ghetto, Gebiete, Geschäfte</li>
-          <li><strong>Identität:</strong> Laut, organisiert, kompromisslos</li>
-        </ul>
+      <div class="hero-bottom">
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>666</strong>
+            <span>Identität mit Wiedererkennungswert und klarer Linie</span>
+          </div>
+          <div class="stat">
+            <strong>Loyalität</strong>
+            <span>Zusammenhalt steht über allem, wenn es darauf ankommt</span>
+          </div>
+          <div class="stat">
+            <strong>Dominanz</strong>
+            <span>Präsenz in Events, Gebieten und entscheidenden Situationen</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Auf einen Blick</h3>
+          <ul>
+            <li><strong>Name:</strong> 666ers</li>
+            <li><strong>Motto:</strong> Nicht perfekt, aber unzerbrechlich</li>
+            <li><strong>Fokus:</strong> Dominanz, Loyalität, Zusammenhalt</li>
+            <li><strong>Ausrichtung:</strong> Highway, Ghetto, Gebiete, Geschäfte</li>
+            <li><strong>Identität:</strong> Laut, organisiert, kompromisslos</li>
+            <li><strong>RP-Anspruch:</strong> Wiedererkennbar, aktiv und konsequent</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -440,6 +690,33 @@
     </div>
   </section>
 
+  <section class="section" id="identitaet">
+    <div class="section-line"></div>
+    <h2>Identität der Familie</h2>
+    <p class="section-sub">
+      Die 666ers stehen nicht nur für einen Namen, sondern für ein klares Auftreten. Wir wollen nicht austauschbar sein.
+      Unser Anspruch ist eine Familie mit Charakter, Wiedererkennungswert und interner Stärke.
+    </p>
+    <div class="mini-grid">
+      <div class="mini-box">
+        <h4>Lautstärke</h4>
+        <p>Wir verstecken uns nicht. Unsere Präsenz soll spürbar sein, im Auftreten, im Verhalten und im RP.</p>
+      </div>
+      <div class="mini-box">
+        <h4>Loyalität</h4>
+        <p>Wer Teil der 666ers ist, steht nicht alleine. In entscheidenden Momenten handeln wir geschlossen.</p>
+      </div>
+      <div class="mini-box">
+        <h4>Disziplin</h4>
+        <p>Hinter dem Chaos steckt Ordnung. Rollen, Zuständigkeiten und Respekt innerhalb der Familie sind Pflicht.</p>
+      </div>
+      <div class="mini-box">
+        <h4>Wiedererkennung</h4>
+        <p>Die Familie soll auf der Insel nicht nur bekannt sein, sondern einen bleibenden Eindruck hinterlassen.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="ziele">
     <div class="section-line"></div>
     <h2>Kernziel & Operative Ziele</h2>
@@ -447,27 +724,40 @@
       <div class="card">
         <h3>Kernziel</h3>
         <p>
-          Die 666ers verfolgen kein gewöhnliches Ziel. Wir wollen Geschichte schreiben und
-          die stärkste Familie der Insel werden.
+          Die 666ers verfolgen kein gewöhnliches Ziel. Wir wollen Geschichte schreiben und die stärkste Familie der Insel werden.
         </p>
         <br>
         <p>
           Wir sind laut, loyal und fallen auf. Unser Motto lautet:
           <strong>Nicht perfekt, aber unzerbrechlich.</strong>
         </p>
+        <br>
+        <p>
+          Unser Ziel ist nicht nur kurzfristige Aufmerksamkeit, sondern langfristige Verankerung, Einfluss und Respekt.
+        </p>
       </div>
 
       <div class="card">
         <h3>Operative Ziele</h3>
-        <p>
-          Wir streben nicht nur an, Events zu dominieren, sondern auch den Highway und das Ghetto
-          zu kontrollieren.
-        </p>
-        <br>
-        <p>
-          Wir sind nicht nur für ein Stück vom Kuchen gekommen – wir wollen alles haben.
-        </p>
+        <ul>
+          <li>Events nicht nur mitspielen, sondern dominieren</li>
+          <li>Präsenz auf dem Highway und im Ghetto aufbauen</li>
+          <li>Gebiete und geschäftliche Möglichkeiten strategisch sichern</li>
+          <li>Interne Stärke aufbauen, um nach außen geschlossen aufzutreten</li>
+          <li>Als Familie wachsen, statt nur aus Einzelspielern zu bestehen</li>
+        </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="banner-box">
+      <h3>Keine halben Sachen</h3>
+      <p>
+        Wir sind nicht nur für ein Stück vom Kuchen gekommen. Wir wollen alles haben. Unsere Familie ist darauf ausgerichtet,
+        sich Schritt für Schritt weiter auszubauen, sich in wichtige Geschehnisse einzubringen und im Roleplay nicht nur sichtbar,
+        sondern relevant zu werden.
+      </p>
     </div>
   </section>
 
@@ -475,8 +765,8 @@
     <div class="section-line"></div>
     <h2>Struktur</h2>
     <p class="section-sub">
-      Wir haben eine feste Ranghierarchie, klare Zuständigkeiten und ein System, das auf Ordnung,
-      Loyalität und interner Stärke basiert.
+      Wir haben eine feste Ranghierarchie, klare Zuständigkeiten und ein System, das auf Ordnung, Loyalität und interner Stärke basiert.
+      Jeder Rang hat innerhalb der Familie eine Aufgabe und trägt zur Stabilität des Gesamtbildes bei.
     </p>
 
     <div class="grid-3">
@@ -500,24 +790,49 @@
       <div class="card">
         <h3>Turf Team</h3>
         <p>
-          Unser Turf Team fokussiert sich darauf, Gebiete und Geschäfte zu übernehmen und
-          unsere Präsenz Schritt für Schritt weiter auszubauen.
+          Unser Turf Team fokussiert sich darauf, Gebiete und Geschäfte zu übernehmen und unsere Präsenz Schritt für Schritt weiter auszubauen.
+          Dabei geht es nicht nur um Besitz, sondern auch um Einfluss, Sichtbarkeit und Kontrolle.
         </p>
       </div>
       <div class="card">
         <h3>Business Team</h3>
         <p>
-          Zeitgleich kümmert sich unser Business Team um Solarpanele, Beete und weitere Geschäfte,
-          um die Familie wirtschaftlich zu stärken.
+          Zeitgleich kümmert sich unser Business Team um Solarpanele, Beete und weitere Geschäfte, um die Familie wirtschaftlich zu stärken
+          und eine stabile Grundlage für weiteres Wachstum zu schaffen.
         </p>
       </div>
     </div>
 
     <div class="card" style="margin-top:22px;">
       <p>
-        Zusammen mit beiden Teams sind wir auf einem guten Weg, uns immer weiter auszubauen
-        und gemeinsam als Familie zu wachsen.
+        Zusammen mit beiden Teams sind wir auf einem guten Weg, uns immer weiter auszubauen und gemeinsam als Familie zu wachsen.
+        Wirtschaftliche Stärke und territoriale Präsenz sollen bei uns Hand in Hand gehen.
       </p>
+    </div>
+  </section>
+
+  <section class="section" id="praesenz">
+    <div class="section-line"></div>
+    <h2>Präsenz auf der Insel</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Außenwirkung</h3>
+        <p>
+          Die 666ers sollen nicht übersehen werden. Unser Auftreten soll klar, geschlossen und wiedererkennbar sein.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Beziehungen</h3>
+        <p>
+          Wir setzen auf Diplomatie, wo sie sinnvoll ist, und auf Konfrontation, wenn sie notwendig wird.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Einfluss</h3>
+        <p>
+          Langfristig wollen wir ein fester Bestandteil der Kultur der Insel und ein permanenter Teil des kriminellen Netzwerks werden.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -528,15 +843,15 @@
       <div class="card">
         <h3>Diplomatie & Beziehungen</h3>
         <p>
-          Wir verfügen bereits über Beziehungen zu anderen Organisationen und Familien,
-          halten Diplomatie aufrecht und konfrontieren jene, die uns im Weg stehen.
+          Wir verfügen bereits über Beziehungen zu anderen Organisationen und Familien, halten Diplomatie aufrecht und konfrontieren jene,
+          die uns im Weg stehen. Unser Ziel ist es, nicht isoliert zu handeln, sondern strategisch.
         </p>
       </div>
       <div class="card">
         <h3>Langfristige Verankerung</h3>
         <p>
-          Wir, die 666ers, streben an, uns fest in der Kultur der Insel zu verankern und
-          ein permanenter Teil des kriminellen Netzwerks zu werden.
+          Wir, die 666ers, streben an, uns fest in der Kultur der Insel zu verankern und ein permanenter Teil des kriminellen Netzwerks zu werden.
+          Nicht als kurzer Trend, sondern als Name mit Gewicht.
         </p>
       </div>
     </div>
