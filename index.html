@@ -32,6 +32,20 @@
 
     html{
       scroll-behavior:smooth;
+      cursor: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'>\
+  <defs>\
+    <filter id='g' x='-50%' y='-50%' width='200%' height='200%'>\
+      <feGaussianBlur stdDeviation='2.4' result='b'/>\
+      <feMerge>\
+        <feMergeNode in='b'/>\
+        <feMergeNode in='SourceGraphic'/>\
+      </feMerge>\
+    </filter>\
+  </defs>\
+  <circle cx='12' cy='12' r='5' fill='rgba(193,18,31,0.14)' filter='url(%23g)'/>\
+  <circle cx='12' cy='12' r='1.8' fill='rgba(193,18,31,0.55)'/>\
+</svg>") 12 12, auto;
     }
 
     body{
@@ -44,7 +58,6 @@
         linear-gradient(180deg, #05060a 0%, #0a0c12 46%, #06070b 100%);
       overflow-x:hidden;
       position:relative;
-      cursor:none;
     }
 
     .ambient{
@@ -88,69 +101,6 @@
       to{ transform:translateY(-115vh) scale(1.5); opacity:0; }
     }
 
-    /* =========================
-       666 CURSOR SYSTEM
-    ========================= */
-
-    .cursor{
-      position:fixed;
-      top:0;
-      left:0;
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:#c1121f;
-      pointer-events:none;
-      z-index:99999;
-      transform:translate(-50%,-50%);
-      box-shadow:
-        0 0 6px rgba(193,18,31,0.6),
-        0 0 12px rgba(193,18,31,0.4);
-    }
-
-    .cursor-follower{
-      position:fixed;
-      top:0;
-      left:0;
-      width:32px;
-      height:32px;
-      border-radius:50%;
-      pointer-events:none;
-      z-index:99998;
-      transform:translate(-50%,-50%);
-      border:1px solid rgba(193,18,31,0.35);
-      background:radial-gradient(circle, rgba(193,18,31,0.12), transparent 70%);
-      backdrop-filter:blur(2px);
-      transition:
-        transform .18s ease,
-        width .18s ease,
-        height .18s ease,
-        border .18s ease,
-        background .18s ease;
-    }
-
-    .cursor.hover{
-      transform:translate(-50%,-50%) scale(1.8);
-      box-shadow:
-        0 0 12px rgba(193,18,31,0.8),
-        0 0 24px rgba(193,18,31,0.5);
-    }
-
-    .cursor-follower.hover{
-      width:60px;
-      height:60px;
-      border:1px solid rgba(139,92,246,0.45);
-      background:radial-gradient(circle, rgba(139,92,246,0.18), transparent 70%);
-    }
-
-    .cursor.click{
-      transform:translate(-50%,-50%) scale(0.7);
-    }
-
-    .cursor-follower.click{
-      transform:translate(-50%,-50%) scale(0.85);
-    }
-
     .navbar{
       position:sticky;
       top:0;
@@ -183,15 +133,15 @@
     .logo-wrap::after{
       content:"";
       position:absolute;
-      width:88px;
-      height:88px;
+      width:64px;
+      height:64px;
       border-radius:50%;
-      background:radial-gradient(circle, rgba(193,18,31,0.12) 0%, rgba(193,18,31,0.04) 40%, transparent 72%);
-      filter:blur(12px);
-      opacity:.35;
-      transform:translateX(-4px);
+      background:radial-gradient(circle, rgba(193,18,31,0.04) 0%, rgba(193,18,31,0.015) 42%, transparent 72%);
+      filter:blur(10px);
+      opacity:.18;
+      transform:translateX(4px);
       pointer-events:none;
-      animation:auraPulse 3.2s ease-in-out infinite;
+      animation:auraPulse 4s ease-in-out infinite;
     }
 
     .site-logo{
@@ -202,25 +152,17 @@
       position:relative;
       z-index:2;
       animation:
-        logoFloat 3.8s ease-in-out infinite,
-        logoGlow 3.2s ease-in-out infinite;
-      filter:
-        drop-shadow(0 0 4px rgba(193,18,31,0.18))
-        drop-shadow(0 0 10px rgba(140,0,0,0.16));
+        logoFloat 4.5s ease-in-out infinite,
+        logoGlow 4.2s ease-in-out infinite;
+      filter:drop-shadow(0 0 1px rgba(130,0,0,0.08));
       transition:
         transform .25s ease,
         filter .25s ease;
     }
 
     .logo-wrap:hover .site-logo{
-      transform:scale(1.03);
-      filter:
-        drop-shadow(0 0 6px rgba(193,18,31,0.24))
-        drop-shadow(0 0 14px rgba(120,0,0,0.20));
-      animation:
-        logoFloat 3.8s ease-in-out infinite,
-        logoGlow 2s ease-in-out infinite,
-        demonFlicker .22s linear 1;
+      transform:scale(1.01);
+      filter:drop-shadow(0 0 3px rgba(140,0,0,0.12));
     }
 
     .logo-text{
@@ -230,8 +172,8 @@
       text-transform:uppercase;
       color:#fff;
       text-shadow:
-        0 0 10px rgba(255,255,255,0.08),
-        0 0 18px rgba(139,92,246,0.12);
+        0 0 3px rgba(255,255,255,0.03),
+        0 0 8px rgba(139,92,246,0.06);
       line-height:1;
       transition:.25s ease;
       position:relative;
@@ -242,46 +184,29 @@
       color:var(--violet);
     }
 
-    .logo-wrap:hover .logo-text{
-      text-shadow:
-        0 0 8px rgba(193,18,31,0.10),
-        0 0 16px rgba(139,92,246,0.16);
-    }
-
     @keyframes logoFloat{
       0%,100%{ transform:translateY(0px); }
-      50%{ transform:translateY(-4px); }
+      50%{ transform:translateY(-2px); }
     }
 
     @keyframes logoGlow{
       0%,100%{
-        filter:
-          drop-shadow(0 0 4px rgba(193,18,31,0.16))
-          drop-shadow(0 0 10px rgba(120,0,0,0.14));
+        filter:drop-shadow(0 0 1px rgba(120,0,0,0.06));
       }
       50%{
-        filter:
-          drop-shadow(0 0 7px rgba(193,18,31,0.22))
-          drop-shadow(0 0 14px rgba(120,0,0,0.18));
+        filter:drop-shadow(0 0 2px rgba(120,0,0,0.09));
       }
     }
 
     @keyframes auraPulse{
       0%,100%{
-        opacity:.28;
-        transform:translateX(-4px) scale(0.96);
+        opacity:.12;
+        transform:translateX(4px) scale(0.98);
       }
       50%{
-        opacity:.42;
-        transform:translateX(-4px) scale(1.05);
+        opacity:.18;
+        transform:translateX(4px) scale(1.02);
       }
-    }
-
-    @keyframes demonFlicker{
-      0%,100%{ opacity:1; }
-      25%{ opacity:.92; }
-      50%{ opacity:1; }
-      75%{ opacity:.96; }
     }
 
     .nav-links{
@@ -301,6 +226,7 @@
       background:rgba(255,255,255,0.03);
       border:1px solid rgba(255,255,255,0.04);
       overflow:hidden;
+      cursor:pointer;
     }
 
     .nav-links a::before{
@@ -308,8 +234,7 @@
       position:absolute;
       inset:0;
       border-radius:inherit;
-      background:
-        linear-gradient(135deg, rgba(193,18,31,0.14), rgba(139,92,246,0.12));
+      background:linear-gradient(135deg, rgba(193,18,31,0.12), rgba(139,92,246,0.10));
       opacity:0;
       transition:opacity .25s ease;
     }
@@ -325,7 +250,7 @@
       background:linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,0.10),
+        rgba(255,255,255,0.08),
         transparent
       );
       opacity:0;
@@ -334,10 +259,10 @@
     .nav-links a:hover,
     .nav-links a.active{
       color:#fff;
-      border-color:rgba(193,18,31,0.22);
+      border-color:rgba(193,18,31,0.18);
       box-shadow:
-        0 0 12px rgba(193,18,31,0.08),
-        0 0 22px rgba(139,92,246,0.08);
+        0 0 10px rgba(193,18,31,0.06),
+        0 0 18px rgba(139,92,246,0.06);
     }
 
     .nav-links a:hover::before,
@@ -506,7 +431,7 @@
       font-weight:800;
       transition:.25s ease;
       border:1px solid transparent;
-      cursor:none;
+      cursor:pointer;
       font-family:inherit;
       position:relative;
       overflow:hidden;
@@ -809,7 +734,7 @@
       border-radius:16px;
       border:1px solid rgba(255,255,255,0.08);
       margin-bottom:12px;
-      cursor:none;
+      cursor:pointer;
       transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
     }
 
@@ -906,7 +831,7 @@
       height:44px;
       border:none;
       border-radius:50%;
-      cursor:none;
+      cursor:pointer;
       font-size:24px;
       font-weight:700;
       color:#fff;
@@ -929,9 +854,7 @@
       text-align:center;
     }
 
-    /* =========================
-       666 HOVER EFFECT SYSTEM
-    ========================= */
+    /* Hover Effekte ohne Sound */
 
     .rank::before,
     .card::before,
@@ -1083,21 +1006,13 @@
     }
 
     @keyframes shineSweep{
-      0%{
-        transform:rotate(18deg) translateX(-140%);
-      }
-      100%{
-        transform:rotate(18deg) translateX(420%);
-      }
+      0%{ transform:rotate(18deg) translateX(-140%); }
+      100%{ transform:rotate(18deg) translateX(420%); }
     }
 
     @keyframes demonPulseText{
-      0%,100%{
-        transform:scale(1);
-      }
-      50%{
-        transform:scale(1.02);
-      }
+      0%,100%{ transform:scale(1); }
+      50%{ transform:scale(1.02); }
     }
 
     @media (max-width:1100px){
@@ -1187,8 +1102,8 @@
       }
 
       .logo-wrap::after{
-        width:70px;
-        height:70px;
+        width:50px;
+        height:50px;
       }
 
       .logo-text{
@@ -1197,27 +1112,13 @@
     }
 
     @media (max-width:900px){
-      body{
+      html{
         cursor:auto;
-      }
-
-      .cursor,
-      .cursor-follower{
-        display:none;
-      }
-
-      .btn,
-      .image-card img,
-      .lightbox-close{
-        cursor:pointer;
       }
     }
   </style>
 </head>
 <body>
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-
   <div class="ambient"></div>
 
   <div class="particles">
@@ -1238,8 +1139,8 @@
 
   <nav class="navbar">
     <div class="nav-inner">
-      <div class="logo-wrap" id="logoWrap">
-        <img src="logo-666ers.png" alt="666ers Logo" class="site-logo" id="siteLogo">
+      <div class="logo-wrap">
+        <img src="logo-666ers.png" alt="666ers Logo" class="site-logo">
         <div class="logo-text">Familie <span>666ers</span></div>
       </div>
 
@@ -1744,199 +1645,6 @@
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeLightbox();
-    });
-
-    const logoWrap = document.getElementById("logoWrap");
-
-    let audioUnlocked = false;
-    let audioCtx = null;
-
-    function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
-      if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-      }
-
-      audioUnlocked = true;
-    }
-
-    function playTone({
-      frequency = 440,
-      duration = 0.08,
-      type = "sawtooth",
-      volume = 0.02,
-      endFrequency = null
-    }) {
-      if (!audioUnlocked || !audioCtx) return;
-
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = type;
-      osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-
-      if (endFrequency) {
-        osc.frequency.exponentialRampToValueAtTime(
-          endFrequency,
-          audioCtx.currentTime + duration
-        );
-      }
-
-      gain.gain.setValueAtTime(volume, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(
-        0.0001,
-        audioCtx.currentTime + duration
-      );
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + duration);
-    }
-
-    function playHoverSound() {
-      playTone({
-        frequency: 240,
-        endFrequency: 320,
-        duration: 0.07,
-        type: "triangle",
-        volume: 0.018
-      });
-    }
-
-    function playClickSound() {
-      playTone({
-        frequency: 180,
-        endFrequency: 90,
-        duration: 0.12,
-        type: "sawtooth",
-        volume: 0.03
-      });
-
-      setTimeout(() => {
-        playTone({
-          frequency: 260,
-          endFrequency: 180,
-          duration: 0.08,
-          type: "triangle",
-          volume: 0.018
-        });
-      }, 35);
-    }
-
-    function playSoftHoverSound() {
-      if (!audioUnlocked || !audioCtx) return;
-
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = "triangle";
-      osc.frequency.setValueAtTime(220, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
-
-      gain.gain.setValueAtTime(0.012, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.05);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.05);
-    }
-
-    document.addEventListener("click", initAudio, { once: true });
-    document.addEventListener("keydown", initAudio, { once: true });
-    document.addEventListener("touchstart", initAudio, { once: true });
-
-    if (logoWrap) {
-      let hoverCooldown = false;
-
-      logoWrap.addEventListener("mouseenter", () => {
-        if (hoverCooldown) return;
-        playHoverSound();
-        hoverCooldown = true;
-        setTimeout(() => hoverCooldown = false, 120);
-      });
-
-      logoWrap.addEventListener("click", () => {
-        playClickSound();
-      });
-    }
-
-    const hoverTargets = document.querySelectorAll(
-      ".rank, .card, .mini-box, .image-card, .stat, .hero-card, .banner-box, .quote-box, .btn, .nav-links a"
-    );
-
-    hoverTargets.forEach((el) => {
-      let cd = false;
-      el.addEventListener("mouseenter", () => {
-        if (cd) return;
-        playSoftHoverSound();
-        cd = true;
-        setTimeout(() => cd = false, 90);
-      });
-    });
-
-    const cursor = document.querySelector(".cursor");
-    const follower = document.querySelector(".cursor-follower");
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let posX = mouseX;
-    let posY = mouseY;
-
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
-      if (cursor) {
-        cursor.style.left = mouseX + "px";
-        cursor.style.top = mouseY + "px";
-      }
-    });
-
-    function animateFollower() {
-      if (!follower) return;
-
-      posX += (mouseX - posX) * 0.15;
-      posY += (mouseY - posY) * 0.15;
-
-      follower.style.left = posX + "px";
-      follower.style.top = posY + "px";
-
-      requestAnimationFrame(animateFollower);
-    }
-
-    animateFollower();
-
-    const cursorHoverTargets = document.querySelectorAll(
-      "a, button, .btn, .rank, .card, .mini-box, .image-card, .stat, .lightbox-close"
-    );
-
-    cursorHoverTargets.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        if (cursor) cursor.classList.add("hover");
-        if (follower) follower.classList.add("hover");
-      });
-
-      el.addEventListener("mouseleave", () => {
-        if (cursor) cursor.classList.remove("hover");
-        if (follower) follower.classList.remove("hover");
-      });
-    });
-
-    document.addEventListener("mousedown", () => {
-      if (cursor) cursor.classList.add("click");
-      if (follower) follower.classList.add("click");
-    });
-
-    document.addEventListener("mouseup", () => {
-      if (cursor) cursor.classList.remove("click");
-      if (follower) follower.classList.remove("click");
     });
   </script>
 </body>
