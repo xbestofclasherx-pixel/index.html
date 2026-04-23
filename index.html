@@ -32,20 +32,6 @@
 
     html{
       scroll-behavior:smooth;
-      cursor: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'>\
-  <defs>\
-    <filter id='g' x='-50%' y='-50%' width='200%' height='200%'>\
-      <feGaussianBlur stdDeviation='2.4' result='b'/>\
-      <feMerge>\
-        <feMergeNode in='b'/>\
-        <feMergeNode in='SourceGraphic'/>\
-      </feMerge>\
-    </filter>\
-  </defs>\
-  <circle cx='12' cy='12' r='5' fill='rgba(193,18,31,0.14)' filter='url(%23g)'/>\
-  <circle cx='12' cy='12' r='1.8' fill='rgba(193,18,31,0.55)'/>\
-</svg>") 12 12, auto;
     }
 
     body{
@@ -854,8 +840,6 @@
       text-align:center;
     }
 
-    /* Hover Effekte ohne Sound */
-
     .rank::before,
     .card::before,
     .mini-box::before,
@@ -1108,12 +1092,6 @@
 
       .logo-text{
         font-size:24px;
-      }
-    }
-
-    @media (max-width:900px){
-      html{
-        cursor:auto;
       }
     }
   </style>
